@@ -8,13 +8,16 @@ function Student() {
   const navigate = useNavigate();
   useEffect(() => {
     axios
-      .get("http://localhost:8081/")
-      .then((res) => setStudent(res.data))
+      .get(`${import.meta.env.VITE_API_URL}/`)
+      .then((res) => {
+        setStudent(res.data);
+        console.log(res);
+      })
       .catch((err) => console.log(err));
   }, []);
   function deleteStudent(idStudent) {
     axios
-      .delete(`http://localhost:8081/api/delete/${idStudent}`)
+      .delete(`${import.meta.env.VITE_API_URL}/api/delete/${idStudent}`)
       .then((res) => {
         setStudent((prevStudent) =>
           prevStudent.filter((data) => data.id !== idStudent)
@@ -43,7 +46,9 @@ function Student() {
                     <td>{data.name}</td>
                     <td>{data.email}</td>
                     <td>
-                      <Link className="btn" to={`update/${data.id}`}>Edit</Link>
+                      <Link className="btn" to={`update/${data.id}`}>
+                        Edit
+                      </Link>
                       <button onClick={() => deleteStudent(data.id)}>
                         Delete
                       </button>

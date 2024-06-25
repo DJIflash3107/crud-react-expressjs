@@ -9,7 +9,7 @@ function CreateStudent() {
   const navigate = useNavigate();
   function handleSubmit(e) {
     e.preventDefault();
-    axios.post("http://localhost:8081/api/insert", {studentName: name, studentEmail: email,
+    axios.post(`${import.meta.env.VITE_API_URL}/api/insert`, {studentName: name, studentEmail: email,
     })
     navigate("/");
   }

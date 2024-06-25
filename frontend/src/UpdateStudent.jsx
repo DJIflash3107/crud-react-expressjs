@@ -13,7 +13,7 @@ function UpdateStudent() {
     getUserById();
   }, []);
   const getUserById = async () => {
-    const response = await axios.get(`http://localhost:8081/api/update/${idStudent}`)
+    const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/update/${idStudent}`)
       .then((res) => {
         const data = res.data[0];
         setName(data.name);
@@ -23,7 +23,7 @@ function UpdateStudent() {
   }
   function handleSubmit(e) {
     e.preventDefault();
-    axios.put(`http://localhost:8081/api/store/${idStudent}`, {
+    axios.put(`${import.meta.env.VITE_API_URL}/api/store/${idStudent}`, {
       studentName: name,
       studentEmail: email,
     });
